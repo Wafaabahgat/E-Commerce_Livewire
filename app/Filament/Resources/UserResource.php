@@ -3,14 +3,23 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
+use App\Filament\Resources\UserResource\RelationManagers\OrdersRelationManager;
 use App\Models\User;
 use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\Page;
 use Filament\Resources\Pages\CreateRecord;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\ActionGroup;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -25,20 +34,20 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')->required(),
+                TextInput::make('name')->required(),
 
-                Forms\Components\TextInput::make('email')
+                TextInput::make('email')
                     ->label('Email Address')
                     ->email()->maxLength(255)
                     ->unique(ignoreRecord: true)->required(),
 
-                Forms\Components\TextInput::make('password')
+                TextInput::make('password')
                     ->label('Password')
                     ->password()
                     ->dehydrated(fn ($state) => filled($state))
                     ->required(fn (Page $livewire): bool => $livewire instanceof CreateRecord),
 
-                Forms\Components\DatePicker::make('email_verified_at')
+                DatePicker::make('email_verified_at')
                     ->label('Email Verified At')->default(now()),
             ]);
     }
@@ -47,29 +56,27 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')->sortable(),
-                Tables\Columns\TextColumn::make('email')->sortable(),
-                Tables\Columns\TextColumn::make('email_verified_at')->sortable()
+                TextColumn::make('name')->sortable(),
+                TextColumn::make('email')->sortable(),
+                TextColumn::make('email_verified_at')->sortable()
                     ->label('Email Verified')->dateTime(),
-                Tables\Columns\TextColumn::make('created_at')->sortable()
+                TextColumn::make('created_at')->sortable()
                     ->label('Created At')->dateTime(),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                // Tables\Actions\ViewAction::make(),
-                // Tables\Actions\EditAction::make(),
-                // Tables\Actions\DeleteAction::make(),
-                Tables\Actions\ActionGroup::make([
-                    Tables\Actions\ViewAction::make(),
-                    Tables\Actions\EditAction::make(),
-                    Tables\Actions\DeleteAction::make(),
+
+                ActionGroup::make([
+                    ViewAction::make(),
+                    EditAction::make(),
+                    DeleteAction::make(),
                 ])
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -77,7 +84,7 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            OrdersRelationManager::class
         ];
     }
 
