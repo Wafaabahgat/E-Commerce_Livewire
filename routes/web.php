@@ -45,4 +45,4 @@ Route::get('/cart', CartPage::class);
 Route::get('/checkout', CheckPage::class);
 Route::get('/my-orders', MyOrdersPage::class);
 Route::get('/my-orders/{order}', MyOrderDetailsPage::class);
-Route::get('/products/{product}', ProductDetailPage::class);
+Route::get('/products/{slug}', ProductDetailPage::class);

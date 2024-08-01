@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('disc')->nullable();
             $table->string('images')->nullable();
             $table->decimal('price', 10, 2);
-            $table->decimal('compare_price')->nullable();
+            $table->decimal('compare_price', 10, 2)->nullable();
             $table->float('rating')->default(0);
             $table->boolean('is_active')->default(true);
             $table->boolean('is_featured')->default(false);
