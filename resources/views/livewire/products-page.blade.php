@@ -32,7 +32,8 @@
                                     <label for="{{ $brand->slug }}" class="flex items-center dark:text-gray-300">
                                         <input type="checkbox" class="w-4 h-4 mr-2" id="{{ $brand->slug }}"
                                             value="{{ $brand->id }}>
-                                        <span class="text-lg dark:text-gray-400">{{ $brand->name }}</span>
+                                        <span class="text-lg
+                                            dark:text-gray-400">{{ $brand->name }}</span>
                                     </label>
                                 </li>
                             @endforeach

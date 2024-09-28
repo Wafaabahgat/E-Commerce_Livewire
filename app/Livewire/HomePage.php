@@ -11,26 +11,25 @@ use Livewire\Component;
 
 class HomePage extends Component
 {
+
+    public $categories = [];
+    public $brands = [];
+    
+    public function mount()
+    {
+        $this->categories = Category::where(
+            'is_active',
+            1
+        )->get();;
+        $this->brands = Brand::where(
+            'is_active',
+            1
+        )->get();
+        // dd($this->categories);
+    }
+
     public function render()
     {
-        $brands = Brand::where(
-            'is_active',
-            1
-        )->get();
-
-        $categories = Category::where(
-            'is_active',
-            1
-        )->get();
-
-        //  dd($categories);
-
-        return view(
-            'livewire.home-page',
-            [
-                'brands' => $brands,
-                'categories' => $categories,
-            ]
-        );
+        return view('livewire.home-page',);
     }
 }

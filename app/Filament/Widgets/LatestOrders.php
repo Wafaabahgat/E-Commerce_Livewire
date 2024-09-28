@@ -4,12 +4,11 @@ namespace App\Filament\Widgets;
 
 use App\Filament\Resources\OrderResource;
 use App\Models\Order;
-use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Filament\Widgets\TableWidget as BaseWidget;
 use Filament\Tables\Actions\Action;
-use Filament\Tables\Actions\DeleteAction;
+
 
 class LatestOrders extends BaseWidget
 {
@@ -37,14 +36,14 @@ class LatestOrders extends BaseWidget
 
                 TextColumn::make('status')
                     ->badge()
-                    ->color(fn (string $state): string => match ($state) {
+                    ->color(fn(string $state): string => match ($state) {
                         'new' => 'info',
                         'processing' => 'warning',
                         'shipped' => 'success',
                         'delivered' => 'success',
                         'canceled' => 'danger',
                     })
-                    ->icon(fn (string $state): string => match ($state) {
+                    ->icon(fn(string $state): string => match ($state) {
                         'new' => 'heroicon-m-sparkles',
                         'processing' => 'heroicon-m-arrow-path',
                         'shipped' => 'heroicon-m-truck',
@@ -70,7 +69,7 @@ class LatestOrders extends BaseWidget
             ->actions([
                 Action::make('View Order')
                     ->url(
-                        fn (Order $record): string => OrderResource::getUrl('view', ['record' => $record])
+                        fn(Order $record): string => OrderResource::getUrl('view', ['record' => $record])
                     )
                     ->icon('heroicon-o-eye')
                     ->color('info'),

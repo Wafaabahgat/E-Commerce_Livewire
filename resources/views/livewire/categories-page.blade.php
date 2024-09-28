@@ -3,7 +3,7 @@
         <div class="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 sm:gap-6">
             @foreach ($categories as $category)
                 <a wire:key='{{ $category->id }}'
-                    class="flex flex-col transition bg-white border shadow-sm group rounded-xl hover:shadow-md dark:bg-slate-900 dark:border-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                    class="flex flex-col transition bg-white border shadow-sm group rounded-xl hover:shadow-md"
                     href="#">
                     <div class="p-4 md:p-5">
                         <div class="flex items-center justify-between">
@@ -12,7 +12,7 @@
                                     alt="{{ $category->name }}">
                                 <div class="ms-3">
                                     <h3
-                                        class="text-2xl font-semibold text-gray-800 group-hover:text-blue-600 dark:group-hover:text-gray-400 dark:text-gray-200">
+                                        class="text-2xl font-semibold text-gray-800 group-hover:text-blue-600">
                                         {{ $category->name }}
                                     </h3>
                                 </div>
@@ -28,8 +28,6 @@
                     </div>
                 </a>
             @endforeach
-
-
         </div>
     </div>
 </div>

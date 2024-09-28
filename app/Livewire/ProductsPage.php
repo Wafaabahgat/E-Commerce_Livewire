@@ -14,18 +14,21 @@ use Livewire\WithPagination;
 class ProductsPage extends Component
 {
     use WithPagination;
+
+    public $categories = [];
+    public $brands = [];
+
+    public function mount()
+    {
+        $this->categories = Category::where('is_active', 1)->get(['id', 'name', 'slug']);
+        $this->brands = Brand::where('is_active', 1)->get(['id', 'name', 'slug']);
+    }
     public function render()
     {
-        $products = Product::query()
-            ->where(
-                'is_active',
-                1
-            );
+        $products = Product::query()->where('is_active', 1);
 
         return view('livewire.products-page', [
             'products' => $products->paginate(6),
-            'brands' => Brand::where('is_active', 1)->get(['id', 'name', 'slug']),
-            'categories' => Category::where('is_active', 1)->get(['id', 'name', 'slug']),
         ]);
     }
 }

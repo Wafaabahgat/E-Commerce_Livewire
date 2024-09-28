@@ -20,7 +20,7 @@ class Brand extends Model
     {
         return $this->hasMany(Product::class, 'brand_id', 'id');
     }
-    
+
     public function order()
     {
         return $this->hasMany(Order::class, 'order_id', 'id');
