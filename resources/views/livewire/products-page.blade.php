@@ -26,16 +26,17 @@
                 </div>
                 {{-- products --}}
                 <div class="w-full col-span-3">
-                    <x-form.product-form>
+                    <x-form.product-form class="">
                         @foreach ($products as $product)
                             <x-common.sub-product :prod="$product" />
                         @endforeach
                     </x-form.product-form>
+
                     <!-- pagination start -->
                     <div class="flex justify-end mt-6">
                         <nav aria-label="page-navigation">
                             <ul class="flex list-style-none">
-                                <li class="page-item disabled ">
+                                <li class="page-item disabled">
                                     <a href="#"
                                         class="relative block pointer-events-none px-3 py-1.5 mr-3 text-base text-gray-700 transition-all duration-300  rounded-md dark:text-gray-400 hover:text-gray-100 hover:bg-blue-600">Previous
                                     </a>

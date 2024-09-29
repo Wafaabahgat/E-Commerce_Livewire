@@ -10,7 +10,7 @@
     @livewireStyles
 </head>
 
-<body class="bg-slate-200 dark:bg-slate-700">
+<body class="bg-white">
     {{-- @livewire('partials.navbar') --}}
     <livewire:partials.navbar />
 
